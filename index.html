@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>NXT News</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
@@ -13,13 +13,13 @@
     <link rel="apple-touch-icon" href="/logo.png">
 </head>
 <body>
-    <h1 style="font-family: 'Manrope', sans-serif; margin-left: 12px;margin-bottom: 0px;"><span  id="toptitle">nxt.</span>&nbsp;&nbsp;&nbsp;</h1>
+    <h1 style="font-family: 'Manrope', sans-serif; margin-left: 12px;margin-bottom: 0px;"><span  id="toptitle">nxt.</span></h1>
     <span id="Date" style="margin-left: 12px; margin-top: 0px;"></span>
     <form action="search.php" method="get">
-        <input id="q" name="q" placeholder="Search nxt..." style="background-color: inherit; padding: 10px; width: 50%; color: white;">
+        <input id="q" name="q" placeholder="Search nxt..." style="background-color: inherit; padding: 10px; width: 80%; color: white;border: none;">
         <!--<input type="submit" value="Search" style="background-color: inherit; color: white; border-style: solid; border-color: white; padding: 7px; border-radius: 15px;">-->
     </form>
-    <div style="background-color: gray; height: 4px;"></div>
+    <div style="height: 4px;"></div>
     <div id="news"></div>
     <p>Source via NYT & The Guardian</p>
     <div id="footer" style="max-width: 400px; padding-bottom: 15px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
@@ -51,7 +51,7 @@
         if (dd < 10) dd = '0' + dd;
         if (mm < 10) mm = '0' + mm;
 
-        const formattedToday = dd + '/' + mm + '/' + yyyy;
+        const formattedToday = mm + '/' + dd + '/' + yyyy;
 
         document.getElementById('Date').innerText = formattedToday;
         document.getElementById("news").innerHTML=('<center><div id="loading"><br><div class="lds-ripple"><div></div><div></div></div></div></center>')

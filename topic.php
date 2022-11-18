@@ -34,12 +34,20 @@
             console.log(e)
             document.getElementById("news").innerHTML=("")
             e.results.forEach((item, index) => {
+                let showingDataWithLargeImage = false
                 if (item.abstract==e.results[0].abstract) {
-                    if (!(item.multimedia==null)) {
+                    if (window.innerWidth<500) {
                         document.getElementById("news").innerHTML += "<img src=\"" + item.multimedia[0].url + "\" style='max-width:400px;'>"
+                    } else {
+                        document.getElementById("news").innerHTML += '<div style="display: flex;"><img src=\"' + item.multimedia[0].url + '\" style="height:400px;padding-right: 10px;"><div style="padding-top: 20px;"><a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div style="padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+item.section+' <i>'+item.subsection+'</i></p><h1 style="font-family: \'Manrope\', sans-serif;">'+item.title+'</h1><p>'+item.abstract+'</p><p><i>The New York Times</i></p></div></a></div></div>'
+                        showingDataWithLargeImage = true
                     }
                 }
-                document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div style="background: rgba(255, 255, 255, 0.1); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+item.section+' <i>'+item.subsection+'</i></p><b>'+item.title+'</b><p>'+item.abstract+'</p></div></a>'
+                if (!showingDataWithLargeImage) {
+                    document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.08); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+item.section+' <i>'+item.subsection+'</i></p><b>'+item.title+'</b><p>'+item.abstract+'</p><p><i>The New York Times</i></p></div></a>'
+                }
+                
+              
             })
         }
 
