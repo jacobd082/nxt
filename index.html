@@ -13,7 +13,8 @@
     <link rel="apple-touch-icon" href="/logo.png">
 </head>
 <body>
-    <h1 style="font-family: 'Manrope', sans-serif; margin-left: 12px;margin-bottom: 0px;cursor: pointer;"><span  id="toptitle" onclick="window.open(window.location.href, '_self')" title="Click to reload.">nxt.</span></h1>
+    <h1 style="font-family: 'Manrope', sans-serif; margin-left: 7px;margin-bottom: 0px;cursor: pointer;"><span  id="toptitle" onclick="window.open(window.location.href, '_self')" title="Click to reload.">nxt.</span></h1>
+    <div style="height: 41px;"></div>
     <span id="Date" style="margin-left: 12px; margin-top: 0px;"></span>
     <form action="search.php" method="get">
         <input id="q" name="q" placeholder="Search nxt..." style="background-color: inherit; padding: 10px; width: 80%; color: white;border: none;">
@@ -43,6 +44,7 @@
         </form>
     </div>
     <script>
+
         const today = new Date();
         const yyyy = today.getFullYear();
         let mm = today.getMonth() + 1; // Months start at 0!
@@ -120,6 +122,11 @@
 #toptitle {
     animation: color-effect 1s;
     width: fit-content;
+    position: fixed;
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    padding-left: 5px;
+    border-radius: 10px;
 }
 
 #toptitle:hover {
