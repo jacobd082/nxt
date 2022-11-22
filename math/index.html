@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Solver - NXT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap" rel="stylesheet">
+    <link rel="icon" href="/logo.png">
+    <link rel="apple-touch-icon" href="/logo.png">
+</head>
+<body>
+    <h1 style="margin-bottom: 0;"><a href="/" style="color: white; text-decoration: none;">nxt.</a></h1>
+    <h1 style="font-size: 50px; margin-top: 0;margin-bottom: 0;">Math Solver</h1>
+    <div style="height: 40px;"></div>
+    <center>
+            <input id="in" onsubmit="solve(document.getElementById('in').value)" style="background-color: inherit;font-size:50px;color:white;border: none;" autofocus placeholder="type an equation...">
+            <p id="eq">Press <b>ENTER</b></p>
+            <p id="result" style="font-size: 50px;">0</p>
+    </center>
+    <script>
+        function solve(expr) {
+            var urlexpr = expr.replaceAll("+", "%2B")
+            var urlexpr = urlexpr.replaceAll("x", "*")
+            var url = 'https://api.mathjs.org/v4/?expr='+urlexpr;
+            var storedText;
+            document.getElementById("eq").innerText="Loading..."
+            
+            fetch(url)
+            .then(function(response) {
+                response.text().then(function(text) {
+                storedText = text;
+                document.getElementById("eq").innerText=(expr)
+                done();
+                });
+            });
+            
+            function done() {
+            document.getElementById("result").innerText=(storedText)
+            }
+        }
+        // Get the input field
+var input = document.getElementById("in");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    solve(document.getElementById("in").value)
+  }
+});
+    </script>
+</body>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+    }
+    h1, h2 {
+        font-family: 'Manrope', sans-serif;
+    }
+    textarea:focus, input:focus{
+    outline: none;
+    text-align: center;
+}
+
+</style>
+</html>

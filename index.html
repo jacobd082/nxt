@@ -16,10 +16,18 @@
     <h1 style="font-family: 'Manrope', sans-serif; margin-left: 7px;margin-bottom: 0px;cursor: pointer;"><span  id="toptitle" onclick="window.open(window.location.href, '_self')" title="Click to reload.">nxt.</span></h1>
     <div style="height: 41px;"></div>
     <span id="Date" style="margin-left: 12px; margin-top: 0px;"></span>
-    <form action="search.php" method="get">
-        <input id="q" name="q" placeholder="Search nxt..." style="background-color: inherit; padding: 10px; width: 80%; color: white;border: none;">
+    <span style="display: flex;flex-direction: row;" id="topappbar">
+        <form action="search.php" method="get">
+            <input id="q" name="q" placeholder="Search nxt..." style="background-color: inherit; padding: 10px; width: 80%; color: white;border: none;display: inline;">
+        </form>
+        <a href="weather/" title="Weather"><img src="apps/storm.png" style="background: skyblue; border-radius: 10px;padding: 4px;"></a>&nbsp;&nbsp;<a href="covid/" title="Covid-19 info"><img src="apps/covid.png" style="background: gray; border-radius: 10px;padding: 4px;"></a>
+        &nbsp;&nbsp;
+        <a href="math/" title="Math Solver"><img src="apps/calculator.png" style="background: rgb(255, 47, 47);border-radius: 10px;padding: 4px;"></a>
+    </span>
+
+
+
         <!--<input type="submit" value="Search" style="background-color: inherit; color: white; border-style: solid; border-color: white; padding: 7px; border-radius: 15px;">-->
-    </form>
     <div style="height: 8px;"></div>
     <div id="news"></div>
     <p>Source via NYT & The Guardian</p>
@@ -83,8 +91,8 @@
                 if (index==7) {
                     document.getElementById("news").innerHTML += '<div style="max-width: 400px;"><h1 style="font-family: \'Manrope\', sans-serif;">At nxt, it is our goal to make news more accessible to the public.</h1><p><a href="about.htm">Learn More</a></p></div>'
                 }
-                if (index==15) {
-                    document.getElementById("news").innerHTML += '<h2>Live Updates:</h2><ul><a href="covid/">Covid 19</a></ul>'
+                if (index==10) {
+                    document.getElementById("news").innerHTML += '<h2>Apps:</h2><a href="weather/"><img src="apps/storm.png" style="background: skyblue; border-radius: 10px;padding: 4px;"></a>&nbsp;&nbsp;<a href="covid/"><img src="apps/covid.png" style="background: gray; border-radius: 10px;padding: 4px;"></a>&nbsp;&nbsp;<a href="math/" title="Math Solver"><img src="apps/calculator.png" style="background: rgb(255, 47, 47);border-radius: 10px;padding: 4px;"></a>'
                 }
             })
             fetch('https://content.guardianapis.com/search?api-key=test')
@@ -119,24 +127,25 @@
         */
     }
 
+
+
+
+    #topappbar, #toptitle, #Date {
+        animation: tab 2s forwards 0s;
+    }
+    @keyframes tab {
+        0%{opacity: 0%;letter-spacing: 10px;}
+        100%{opacity: 100%;letter-spacing: normal;}
+    }
+
+
 #toptitle {
-    animation: color-effect 1s;
     width: fit-content;
     position: fixed;
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px);
     padding-left: 5px;
     border-radius: 10px;
-}
-
-#toptitle:hover {
-    animation: color-effect 1s infinite;
-}
-
-@keyframes color-effect {
-    0%{color: rgb(139, 139, 255);}
-    50%{color: rgb(0, 0, 255);}
-    100%{color: rgb(139, 139, 255);}
 }
 
 

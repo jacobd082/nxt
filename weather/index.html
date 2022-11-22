@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NXT Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap" rel="stylesheet">
+    <link rel="icon" href="/logo.png">
+    <link rel="apple-touch-icon" href="/logo.png">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body>
+    <h1 style="margin-bottom: 0;"><a href="/" style="color: white; text-decoration: none;">nxt.</a></h1>
+    <h1 style="font-size: 50px; margin-top: 0;margin-bottom: 0;">Weather Forecast</h1>
+    <main id="main">
+        <h2>Get an accurate forecast.</h2>
+        <p>This service is only available to people in the United States.</p>
+        <button onclick="useGPS()">Use my Location</button>
+    </main>
+    <p><i>Provided by the National Weather Service</i></p>
+    <script>
+        function useGPS() {
+            var options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+            
+            function success(pos) {
+                var crd = pos.coords;
+            
+                console.log('Your current position is:');
+                console.log(`Latitude : ${crd.latitude}`);
+                console.log(`Longitude: ${crd.longitude}`);
+                console.log(`More or less ${crd.accuracy} meters.`);
+                //localStorage.setItem("unit", document.getElementById("unit-a").value)
+                getWX(crd)
+            }
+            
+            function error(err) {
+                console.warn(`ERROR(${err.code}): ${err.message}`);
+                //alert("There was an error getting your location. Please make sure it is on and try again.")
+                Toastify({
+                    text: "There was an error getting your location. Please make sure it is on and try again.",
+                    style: {
+                    background: "linear-gradient(to right, rgb(255, 95, 109), rgb(255, 195, 113))",
+                    },
+                    gravity: "bottom"
+                }).showToast();
+            }
+            
+            navigator.geolocation.getCurrentPosition(success, error, options);
+            document.getElementById("main").innerHTML="Loading..."
+        }
+        function getWX(crd) {
+            fetch('https://api.weather.gov/points/'+crd.latitude+','+crd.longitude)
+                .then((response) => response.json())
+                .then((data) => handleLocData(data));
+        }
+        function handleLocData(data) {
+            fetch(data.properties.forecast)
+                .then((response) => response.json())
+                .then((data) => handleWXData(data));
+        }
+        function handleWXData(data) {
+            console.log(data.properties.periods)
+            document.getElementById("main").innerHTML=""
+            data.properties.periods.forEach( (event) => {
+                let rof = ""
+                if (event.temperatureTrend=="rising") {
+                    rof = "▲"
+                } else {
+                    rof = "▼"
+                }
+                console.log(event)
+                document.getElementById("main").innerHTML+='<div><table><tr><p>'+event.name+'</p></tr><tr><td><img src="'+event.icon+'"></td><td><span style="font-size:28px">'+event.temperature+'º</span><span style="font-size: 10px;">'+rof+'</span><br><b>'+event.shortForecast+'</b><br><span>'+event.detailedForecast+'</span></td></tr></table></div>'
+            })
+        }
+    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+</body>
+<style>
+    body {
+        background-color: black;
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+    }
+    h1, h2 {
+        font-family: 'Manrope', sans-serif;
+    }
+</style>
+</html>
