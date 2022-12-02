@@ -83,7 +83,14 @@
                     }
                 }
                 if (!showingDataWithLargeImage) {
-                    document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.08); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+item.section.toUpperCase()+' <i>'+item.subsection+'</i></p><b>'+item.title+'</b><p>'+item.abstract+'</p><p><i>The New York Times</i></p></div></a>'
+                    let sectionText = ""
+                    // console.log(item.subsection)
+                    if (item.subsection=="" || item.subsection==undefined) {
+                        sectionText = item.section
+                    } else {
+                        sectionText = item.subsection
+                    }
+                    document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;"></p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.title+'</b><p><i>'+sectionText.toUpperCase()+'</i> - '+item.abstract+'</p><table><tr><td><img src="apps/nyt.png" width="20px"></td><td><p><i>The New York Times</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
                 }
                 if (index==5) {
                     document.getElementById("news").innerHTML += '<h3>Find by category:</h3><h4><a href="topic.php?q=arts">Art 🎨</a>, <a href="topic.php?q=automobiles">Automobiles 🚗</a>, <a href="topic.php?q=books">Books 📚</a>, <a href="topic.php?q=business">Business 🏢</a>, <a href="topic.php?q=food">Food 🌭</a>, <a href="topic.php?q=movies">Movies 🎬</a>, <a href="topic.php?q=obituaries">Obituaries 🪦</a>, <a href="topic.php?q=politics">Politics 💭</a>, <a href="topic.php?q=science">Science 🔬</a>, <a href="topic.php?q=sports">Sports ⚽️</a>, <a href="topic.php?q=technology">Technology 📱</a>, <a href="topic.php?q=theater">Theater 🎭</a>, <a href="topic.php?q=travel">Travel ✈️</a>, <a href="topic.php?q=us">U.S. 🇺🇸</a>, <a href="topic.php?q=world">World 🌍</a></h4>'
@@ -102,7 +109,7 @@
         function handleDataGUARD(e) {
             console.log(e.response.results)
             e.response.results.forEach(item => {
-                document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.webUrl+'" target="_blank" style="color: inherit; text-decoration: none;"><div style="background: rgba(255, 255, 255, 0.08); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+item.sectionName+'</p><b>'+item.webTitle+'</b><p><i>The Guardian</i></p></div></a>'
+                document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.webUrl+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;"><i>'+item.sectionName.toUpperCase()+'</i></p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.webTitle+'</b><table><tr><td><img src="apps/guard.png" width="20px" style="border-radius: 500px;"></td><td><p><i>The Guardian</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
             })
         }
 
@@ -134,7 +141,7 @@
         animation: tab 2s forwards 0s;
     }
     @keyframes tab {
-        0%{opacity: 0%;letter-spacing: 10px;}
+        0%{opacity: 0%;letter-spacing: 3px;}
         100%{opacity: 100%;letter-spacing: normal;}
     }
 
