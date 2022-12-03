@@ -30,27 +30,66 @@
         <!--<input type="submit" value="Search" style="background-color: inherit; color: white; border-style: solid; border-color: white; padding: 7px; border-radius: 15px;">-->
     <div style="height: 8px;"></div>
     <div id="news"></div>
-    <p>Source via NYT & The Guardian</p>
+    <footer>
+        <div style="height: 20px;"></div>
+        <h1 style="font-family: 'Manrope', sans-serif; margin-left: 7px;margin-bottom: 0px;"><span>nxt.</span></h1>
+        <h3>Sources:</h3>
+        <ul>
+            <li>The New York Times</li>
+            <li>The Guardian</li>
+        </ul>
+        <h3>Tools:</h3>
+        <ul>
+            <li><a href="weather/">Weather</a></li>
+            <li><a href="covid/">Covid-19 information</a></li>
+            <li><a href="math/">Math Equations solver</a></li>
+        </ul>
+        <h3 id="cat">Categories:</h3>
+        <ul>
+            <li><a href="topic.php?q=arts">Art</a></li>
+            <li><a href="topic.php?q=automobiles">Automobiles</a></li>
+            <li><a href="topic.php?q=books">Books</a></li>
+            <li><a href="topic.php?q=business">Business</a></li>
+            <li><a href="topic.php?q=food">Food</a></li>
+            <li><a href="topic.php?q=movies">Movies</a></li>
+            <li><a href="topic.php?q=obituaries">Obituaries</a></li>
+            <li><a href="topic.php?q=politics">Politics</a></li>
+            <li><a href="topic.php?q=science">Science</a></li>
+            <li><a href="topic.php?q=sports">Sports</a></li>
+            <li><a href="topic.php?q=technology">Technology</a></li>
+            <li><a href="topic.php?q=theater">Theater</a></li>
+            <li><a href="topic.php?q=travel">Travel</a></li>
+            <li><a href="topic.php?q=us">U.S.</a></li>
+            <li><a href="topic.php?q=world">World</a></li>
+        </ul>
+        <h3>About:</h3>
+        <ul>
+            <li><a href="about.htm">Our mission</a></li>
+        </ul>
+    </footer>
+    <style>
+        ul {
+            list-style: none
+        }
+        li, li > a {
+            color: gray;
+            text-decoration: none;
+        }
+        li:hover, li > a:hover {
+            color: white;
+        }
+    </style>
     <div id="footer" style="max-width: 400px; padding-bottom: 15px; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
-        <form action="search.php" method="get">
-            <input id="q" name="q" placeholder="Search nxt..." style="width: 300px;
-            padding: 8px;
-            border: none;
-            color: white;
-            background-color: rgba(221, 221, 221, 0.2);
-            border-radius: 70px;">
-            <button style="
-            padding: 8px;
-            border: none;
-            border-radius: 70px;
-            color: white;
-            background: rgb(178,82,245);
-            background: linear-gradient(90deg, rgba(178,82,245,1) 0%, rgba(112,62,222,1) 35%, rgba(0,212,255,1) 100%);
-            "
-            type="submit"
-            >Search</button>
-        </form>
+        <a href="apps/"><img src="apps/option.png"></a>
+        <a href="#cat"><img src="apps/list.png"></a>
+        <a href="#q"><img src="apps/search.png"></a>
+        <a href="#"><img src="apps/up-arrow.png"></a>
     </div>
+    <style>
+        #footer > a {
+            padding: 5px;
+        }
+    </style>
     <script>
 
         const today = new Date();
@@ -90,7 +129,7 @@
                     } else {
                         sectionText = item.subsection
                     }
-                    document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;"></p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.title+'</b><p><i>'+sectionText.toUpperCase()+'</i> : '+item.abstract+'</p><table><tr><td><img src="apps/nyt.png" width="20px"></td><td><p><i>The New York Times</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
+                    document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;"></p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.title+'</b><p><i>'+sectionText.toUpperCase()+'</i>: '+item.abstract+'</p><table><tr><td><img src="apps/nyt.png" width="20px"></td><td><p><i>The New York Times</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
                 }
                 if (index==5) {
                     document.getElementById("news").innerHTML += '<h3>Find by category:</h3><h4><a href="topic.php?q=arts">Art 🎨</a>, <a href="topic.php?q=automobiles">Automobiles 🚗</a>, <a href="topic.php?q=books">Books 📚</a>, <a href="topic.php?q=business">Business 🏢</a>, <a href="topic.php?q=food">Food 🌭</a>, <a href="topic.php?q=movies">Movies 🎬</a>, <a href="topic.php?q=obituaries">Obituaries 🪦</a>, <a href="topic.php?q=politics">Politics 💭</a>, <a href="topic.php?q=science">Science 🔬</a>, <a href="topic.php?q=sports">Sports ⚽️</a>, <a href="topic.php?q=technology">Technology 📱</a>, <a href="topic.php?q=theater">Theater 🎭</a>, <a href="topic.php?q=travel">Travel ✈️</a>, <a href="topic.php?q=us">U.S. 🇺🇸</a>, <a href="topic.php?q=world">World 🌍</a></h4><hr style="height: 1px;background-color: #121212;border: none;">'
@@ -141,7 +180,7 @@
         animation: tab 2s forwards 0s;
     }
     @keyframes tab {
-        0%{opacity: 0%;letter-spacing: 3px;}
+        0%{opacity: 0%;letter-spacing: 1px;}
         100%{opacity: 100%;letter-spacing: normal;}
     }
 
