@@ -9,8 +9,10 @@
 <body>
 <?php
 
-echo file_get_contents($_GET['url']);
+$newData = file_get_contents($_GET['url']);
 
+
+echo $newData;
 
 ?>
 </body>
