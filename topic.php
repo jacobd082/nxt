@@ -39,7 +39,7 @@
                     if (window.innerWidth<500) {
                         document.getElementById("news").innerHTML += "<img src=\"" + item.multimedia[0].url + "\" style='max-width:400px;'>"
                     } else {
-                        document.getElementById("news").innerHTML += '<div style="display: flex;"><img src=\"' + item.multimedia[0].url + '\" style="height:400px;padding-right: 10px;"><div style="padding-top: 20px;"><a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div style="padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+item.section+' <i>'+item.subsection+'</i></p><h1 style="font-family: \'Manrope\', sans-serif;">'+item.title+'</h1><p>'+item.abstract+'</p><p><i>The New York Times</i></p></div></a></div></div>'
+                        document.getElementById("news").innerHTML += '<div style="display: flex;"><img src=\"' + item.multimedia[0].url + '\" style="height:400px;padding-right: 10px;"><div style="padding-top: 20px;"><a href="view.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div style="padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+item.section+' <i>'+item.subsection+'</i></p><h1 style="font-family: \'Manrope\', sans-serif;">'+item.title+'</h1><p>'+item.abstract+'</p><p><i>The New York Times</i></p></div></a></div></div>'
                         showingDataWithLargeImage = true
                     }
                 }
@@ -51,7 +51,7 @@
                     } else {
                         sectionText = item.subsection
                     }
-                    document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;"></p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.title+'</b><p><i>'+sectionText.toUpperCase()+'</i> - '+item.abstract+'</p><table><tr><td><img src="apps/nyt.png" width="20px"></td><td><p><i>The New York Times</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
+                    document.getElementById("news").innerHTML += '<a href="view.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;"></p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.title+'</b><p><i>'+sectionText.toUpperCase()+'</i> - '+item.abstract+'</p><table><tr><td><img src="apps/nyt.png" width="20px"></td><td><p><i>The New York Times</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
                 }
                 
               

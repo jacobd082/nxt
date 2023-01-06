@@ -122,17 +122,23 @@
                     tags += "#"+item.subsection.toLowerCase()+" "
                 }
                 if (item.title.toLowerCase().includes("ukraine")) {
-                    tags += "<span style=\"background: linear-gradient(to right, #0057b7, #ffd700);-webkit-background-clip: text;-webkit-text-fill-color: transparent;\">#Ukraine</span> "
+                    tags += "<span><span style=\"color: #0057b7;\">#Ukr</span><span style=\"color: #ffd700;\">aine</span></span> "
+                }
+                if (item.title.toLowerCase().split(" ")[0] == "live") {
+                    tags += "<span style=\"color: white; background: red; border-radius: 2px; font-wight: bold;font-family: \'Manrope\', sans-serif; padding-left: 3px; padding-right: 3px;\">LIVE</span>"
                 }
                 if (item.section=="opinion") {
                     tags += "<br><span style=\"color: yellow;\"><b>This article was marked as opinion.</b></span>"
                 }
                 let showingDataWithLargeImage = false
                 if (item.abstract==e.results[0].abstract) {
+                    tags += "#TopArticle "
                     if (window.innerWidth<500) {
                         document.getElementById("news").innerHTML += "<img src=\"" + item.multimedia[0].url + "\" style='max-width:400px;'>"
+                        document.getElementById("news").innerHTML += '<a href="view.php?url='+item.short_url+'" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+tags+'</p><b style="font-size: xx-large;font-family: \'Manrope\', sans-serif;">'+item.title+'</b><p>'+item.abstract+'</p><table><tr><td><img src="apps/nyt.png" width="20px"></td><td><p><i>The New York Times</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
+                        showingDataWithLargeImage = true
                     } else {
-                        document.getElementById("news").innerHTML += '<div style="display: flex;"><img src=\"' + item.multimedia[0].url + '\" style="height:400px;padding-right: 10px;"><div style="padding-top: 20px;"><a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div style="padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+tags+'</p><h1 style="font-family: \'Manrope\', sans-serif;">'+item.title+'</h1><p>'+item.abstract+'</p><p><i>The New York Times</i></p></div></a></div></div><div style="height: 8px;"></div>'
+                        document.getElementById("news").innerHTML += '<div style="display: flex;"><img src=\"' + item.multimedia[0].url + '\" style="height:400px;padding-right: 10px;"><div style="padding-top: 20px;"><a href="view.php?url='+item.short_url+'" style="color: inherit; text-decoration: none;"><div style="padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+tags+'</p><h1 style="font-family: \'Manrope\', sans-serif;">'+item.title+'</h1><p>'+item.abstract+'</p><p><i>The New York Times</i></p></div></a></div></div><div style="height: 8px;"></div>'
                         showingDataWithLargeImage = true
                     }
                 }
@@ -144,7 +150,7 @@
                     } else {
                         sectionText = item.subsection
                     }
-                    document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.short_url+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+tags+'</p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.title+'</b><p>'+item.abstract+'</p><table><tr><td><img src="apps/nyt.png" width="20px"></td><td><p><i>The New York Times</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
+                    document.getElementById("news").innerHTML += '<a href="view.php?url='+item.short_url+'" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;">'+tags+'</p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.title+'</b><p>'+item.abstract+'</p><table><tr><td><img src="apps/nyt.png" width="20px"></td><td><p><i>The New York Times</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
                 }
                 if (index==5) {
                     document.getElementById("news").innerHTML += '<h3>Find by category:</h3><h4><a href="topic.php?q=arts">Art 🎨</a>, <a href="topic.php?q=automobiles">Automobiles 🚗</a>, <a href="topic.php?q=books">Books 📚</a>, <a href="topic.php?q=business">Business 🏢</a>, <a href="topic.php?q=food">Food 🌭</a>, <a href="topic.php?q=movies">Movies 🎬</a>, <a href="topic.php?q=obituaries">Obituaries 🪦</a>, <a href="topic.php?q=politics">Politics 💭</a>, <a href="topic.php?q=science">Science 🔬</a>, <a href="topic.php?q=sports">Sports ⚽️</a>, <a href="topic.php?q=technology">Technology 📱</a>, <a href="topic.php?q=theater">Theater 🎭</a>, <a href="topic.php?q=travel">Travel ✈️</a>, <a href="topic.php?q=us">U.S. 🇺🇸</a>, <a href="topic.php?q=world">World 🌍</a></h4><hr style="height: 1px;background-color: #121212;border: none;">'
@@ -163,7 +169,7 @@
         function handleDataGUARD(e) {
             console.log(e.response.results)
             e.response.results.forEach(item => {
-                document.getElementById("news").innerHTML += '<a href="viewproxy.php?url='+item.webUrl+'" target="_blank" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;"><i>'+item.sectionName.toUpperCase()+'</i></p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.webTitle+'</b><table><tr><td><img src="apps/guard.png" width="20px" style="border-radius: 500px;"></td><td><p><i>The Guardian</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
+                document.getElementById("news").innerHTML += '<a href="view.php?url='+item.webUrl+'" style="color: inherit; text-decoration: none;"><div class="art" style="background: rgba(255, 255, 255, 0.0); padding: 5px; margin-bottom: 10px; cursor: pointer; border-radius: 3px;><p style="width: fit-content; background-color: gray; border-radius: 3px;"><i>'+item.sectionName.toUpperCase()+'</i></p><b style="font-size: large;font-family: \'Manrope\', sans-serif;">'+item.webTitle+'</b><table><tr><td><img src="apps/guard.png" width="20px" style="border-radius: 500px;"></td><td><p><i>The Guardian</i></p></td></tr></table></div></a><hr style="height: 1px;background-color: #121212;border: none;">'
             })
         }
 
